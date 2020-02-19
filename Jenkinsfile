@@ -4,6 +4,7 @@ pipeline {
         kubernetes {
           //cloud 'kubernetes'
           yaml """
+           apiVersion: v1
            kind: Pod
            metadata:
              name: kaniko
@@ -15,11 +16,15 @@ pipeline {
                volumeMounts:
                  - name: kaniko-secret
                    mountPath: /secret
+               env:
+                 - name: GOOGLE_APPLICATION_CREDENTIALS
+                   value: /secret/kaniko-secret.json
+             restartPolicy: Never
              volumes:
                - name: kaniko-secret
                  secret:
                    secretName: kaniko-secret
-           """
+                      """
               }
     }
     
