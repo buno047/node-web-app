@@ -10,7 +10,7 @@ metadata:
 spec:
   containers:
   - name: kaniko
-    image: gcr.io/kaniko-project/executor:debug-539ddefcae3fd6b411a95982a830d987f4214251
+    image: gcr.io/kaniko-project/executor:debug
     imagePullPolicy: Always
     command:
     - /busybox/cat
@@ -21,7 +21,6 @@ spec:
     env:
       - name: GOOGLE_APPLICATION_CREDENTIALS
         value: /secret/kaniko-secret.json
-  restartPolicy: Never
   volumes:
     - name: kaniko-secret
       secret:
@@ -37,9 +36,10 @@ spec:
               PATH = "/busybox:/kaniko:$PATH"
             }   
             steps {
+             git 'https://github.com/jenkinsci/docker-jnlp-slave.git'
              container(name: 'kaniko', shell: '/busybox/sh') {
                sh '''#!/busybox/sh
-                    /kaniko/executor -f `pwd`/Dockerfile -c `pwd` --insecure --skip-tls-verify --destination=gcr.io/itserious/node-web-app:latest
+                    /kaniko/executor -f `pwd`/Dockerfile -c `pwd` --cache=true --insecure --skip-tls-verify --destination=eu.gcr.io/itserious/node-web-app
 
                '''
                }
