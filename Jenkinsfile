@@ -10,11 +10,8 @@ metadata:
 spec:
   containers:
   - name: kaniko
-    image: gcr.io/kaniko-project/executor:debug-539ddefcae3fd6b411a95982a830d987f4214251
+    image: gcr.io/kaniko-project/executor:latest
     imagePullPolicy: Always
-    command:
-    - cat
-    tty: true
     volumeMounts:
       - name: kaniko-secret
         mountPath: /secret
@@ -35,22 +32,12 @@ spec:
         stage('Docker Build') {
             steps {
              container(name: 'kaniko') {
-               sh '''
-                    /kaniko/executor --dockerfile `pwd`/Dockerfile --context `pwd` --insecure --skip-tls-verify --destination=gcr.io/itserious/node-web-app
+               sh '''#!/busybox/sh
+                    /kaniko/executor --dockerfile `pwd`/Dockerfile --context `pwd` --insecure --skip-tls-verify --destination=gcr.io/itserious/node-web-app:latest
 
                '''
                }
 
-            }
-
-        }
-
-        stage('Push to Docker') {
-            steps {
-                sh '''
-                    echo "work in progress"
-
-                '''
             }
 
         }
