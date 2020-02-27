@@ -9,8 +9,7 @@ pipeline {
             withKubeConfig([caCertificate: '', clusterName: '', contextName: '', credentialsId: 'jenkins-robot-token', namespace: 'itserious-dev', serverUrl: '']) {
         // some block
                sh '''
-               echo "Hello World"
-               kubectl get pods
+                    kubectl get pods --namespace=itserious-dev
                '''
             }  
           
