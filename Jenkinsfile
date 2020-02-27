@@ -47,13 +47,17 @@ spec:
         
         } 
         stage('List pods') {
-          withKubeConfig([caCertificate: '', clusterName: '', contextName: '', credentialsId: 'jenkins-robot-token', namespace: 'itserious-dev', serverUrl: '']) {
+            
+          steps {  
+            withKubeConfig([caCertificate: '', clusterName: '', contextName: '', credentialsId: 'jenkins-robot-token', namespace: 'itserious-dev', serverUrl: '']) {
         // some block
                sh '''
                kubectl get pods
                '''
+            }  
+          
           }  
-
+        
         }       
 
     }
