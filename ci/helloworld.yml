@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: helloworld-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: helloworld
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: node-web-app-container
-        image: shib047/node-web-app:1
+        image: shib047/node-web-app:master-2
         ports:
         - name: nodejs-port
           containerPort: 8080
@@ -27,9 +27,10 @@ metadata:
 spec:
   ports:
   - port: 80
+    nodePort: 31400
     targetPort: nodejs-port
     protocol: TCP
   selector:
     app: helloworld
-  type: ClusterIP
+  type: NodePort
 
