@@ -11,6 +11,7 @@ pipeline {
     stages {
 
         stage('Deploy to GKE') {
+           
             steps{
                 step([
                 $class: 'KubernetesEngineBuilder',
@@ -21,9 +22,7 @@ pipeline {
                 credentialsId: env.CREDENTIALS_ID,
                 verifyDeployments: true])
             }
-        }  
-        
-        }       
+        }        
 
     }
     
