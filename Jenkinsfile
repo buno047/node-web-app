@@ -38,7 +38,7 @@ spec:
             steps {
              container(name: 'kaniko', shell: '/busybox/sh') {
                sh '''#!/busybox/sh
-                    /kaniko/executor -f `pwd`/Dockerfile -c `pwd` --cache=true --insecure --skip-tls-verify --destination=eu.gcr.io/itserious/node-web-app:env.BRANCH_NAME_$BUILD_NUMBER
+                    /kaniko/executor -f `pwd`/Dockerfile -c `pwd` --cache=true --insecure --skip-tls-verify --destination=eu.gcr.io/itserious/node-web-app:env.GIT_BRANCH_$BUILD_NUMBER
                '''
                }
 
