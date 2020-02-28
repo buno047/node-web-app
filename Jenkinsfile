@@ -11,7 +11,7 @@ pipeline {
     stages {
       
         stage('Deploy to GKE') {
-            https://github.com/buno047/node-web-app.git 
+     
             steps{
                 step([
                 $class: 'KubernetesEngineBuilder',
