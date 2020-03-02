@@ -1,5 +1,5 @@
 pipeline {
-    agent { label: "default" }
+    agent any
     
     environment {
         PROJECT_ID = 'itserious'
