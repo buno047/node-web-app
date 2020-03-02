@@ -53,7 +53,7 @@ spec:
         
         } 
         
-         stage('Deploy to GKE') {
+        stage('Deploy to GKE') {
      
             steps{
                 step([
