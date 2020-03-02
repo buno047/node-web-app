@@ -7,7 +7,9 @@ pipeline {
         LOCATION = 'europe-north1-a'
         CREDENTIALS_ID = 'itserious'
     }
-      
+     
+    Stages {
+        
         stage('Deploy to GKE') {
      
             steps{
