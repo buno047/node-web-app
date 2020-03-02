@@ -15,7 +15,7 @@ pipeline {
         stage('kubectl install') {
      
             steps{
-                step(tool name: 'kubectl', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool')
+                tool name: 'kubectl', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
             }
         } 
         
