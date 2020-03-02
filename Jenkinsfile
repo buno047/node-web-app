@@ -13,7 +13,7 @@ pipeline {
     stages {
          
         stage('kubectl install') {
-     
+            https://github.com/buno047/node-web-app.git
             steps{
               sh '.script.sh'
             }
