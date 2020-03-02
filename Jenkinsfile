@@ -1,5 +1,12 @@
 pipeline {
     agent { label: "default" }
+    
+    environment {
+        PROJECT_ID = 'itserious'
+        CLUSTER_NAME = 'development-cluster'
+        LOCATION = 'europe-north1-a'
+        CREDENTIALS_ID = 'itserious'
+    }
       
         stage('Deploy to GKE') {
      
