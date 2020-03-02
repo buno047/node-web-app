@@ -12,7 +12,7 @@ pipeline {
 
     stages {
          
-        stage('Deploy to GKE') {
+        stage('kubectl install') {
      
             steps{
                 step(tool name: 'kubectl', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool')
