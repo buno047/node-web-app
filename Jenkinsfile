@@ -13,8 +13,9 @@ pipeline {
     stages {
         
         stage('Deploy to GKE') {
-     
+            
             steps{
+                tool name: 'kubectl', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
                 step([
                 $class: 'KubernetesEngineBuilder',
                 projectId: env.PROJECT_ID,
