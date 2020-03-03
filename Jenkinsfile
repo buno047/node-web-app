@@ -55,17 +55,33 @@ spec:
 
     stages {
         
+        stage('Build with Kaniko') {
+            environment {
+              PATH = "/busybox:/kaniko:$PATH"
+            }   
+            steps {
+             container(name: 'kaniko', shell: '/busybox/sh') {
+               sh '''#!/busybox/sh
+                    /kaniko/executor -f `pwd`/Dockerfile -c `pwd` --cache=true --insecure --skip-tls-verify --destination=eu.gcr.io/itserious/node-web-app:${BRANCH_NAME}-$BUILD_NUMBER
+               '''
+               }
+
+            }
+        
+        } 
+        
         stage('Deploy to GKE') {
  
           steps{
             container('kubectl') {
-              //sh("sed -i.bak 's#eu.gcr.io/itserious/node-web-app:master-2#${IMAGE_TAG}#' ci/helloworld.yml")
+              sh("sed -i.bak 's#eu.gcr.io/itserious/node-web-app:master-2#${IMAGE_TAG}#' ci/helloworld.yml")
               step([$class: 'KubernetesEngineBuilder',namespace:'itserious-dev', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'ci/helloworld.yml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
             }
+          
           }
+       
         }
     
-
     }
     
 }
