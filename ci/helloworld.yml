@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: node-web-app-container
-        image: shib047/node-web-app:master-2
+        image: eu.gcr.io/itserious/node-web-app:master-2
         ports:
         - name: nodejs-port
           containerPort: 8080
