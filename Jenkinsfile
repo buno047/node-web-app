@@ -53,21 +53,6 @@ spec:
     }
 
     stages {
-
-        stage('Build with Kaniko') {
-            environment {
-              PATH = "/busybox:/kaniko:$PATH"
-            }   
-            steps {
-             container(name: 'kaniko', shell: '/busybox/sh') {
-               sh '''#!/busybox/sh
-                    /kaniko/executor -f `pwd`/Dockerfile -c `pwd` --cache=true --insecure --skip-tls-verify --destination=eu.gcr.io/itserious/node-web-app:${BRANCH_NAME}-$BUILD_NUMBER
-               '''
-               }
-
-            }
-        
-        }
         
         stage('Deploy to GKE') {
  
