@@ -59,7 +59,7 @@ spec:
  
           steps{
             container('kubectl') {
-              sh("sed -i.bak 's#eu.gcr.io/itserious/node-web-app:master-2#${IMAGE_TAG}#' ci/helloworld.yml")
+              //sh("sed -i.bak 's#eu.gcr.io/itserious/node-web-app:master-2#${IMAGE_TAG}#' ci/helloworld.yml")
               step([$class: 'KubernetesEngineBuilder',namespace:'itserious-dev', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'ci/helloworld.yml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
             }
           }
