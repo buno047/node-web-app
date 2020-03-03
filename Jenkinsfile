@@ -11,13 +11,6 @@ pipeline {
     }
 
     stages {
-         
-        stage('kubectl install') {
-           
-            steps{
-              sh './script.sh'
-            }
-        } 
         
         stage('Deploy to GKE') {
      
