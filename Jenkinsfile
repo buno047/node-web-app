@@ -37,6 +37,11 @@ spec:
     command:
     - cat
     tty: true
+  - name: kubehelm
+    image: dtzar/helm-kubectl
+    command:
+    - cat
+    tty: true
   volumes:
     - name: kaniko-secret
       secret:
@@ -50,8 +55,9 @@ spec:
       stage('Deploy to GKE') {
  
           steps{
-            container('kubectl') {
+            container('kubehelm') {
               step(withKubeConfig(caCertificate: '', clusterName: 'development-cluster', contextName: 'gke_itserious_europe-north1-a_development-cluster', credentialsId: 'jenkins-robot', namespace: '', serverUrl: 'https://35.228.101.27') {
+           sh 'helm version'
            sh 'kubectl version'
            sh 'kubectl get pods'
 })
