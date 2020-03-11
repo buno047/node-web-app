@@ -28,7 +28,7 @@ spec:
     - cat
     tty: true
   - name: kubehelm
-    image: devth/helm
+    image: lwolf/helm-kubectl-docker
     command:
     - cat
     tty: true
