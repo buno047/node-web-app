@@ -56,11 +56,12 @@ spec:
  
           steps{
             container('kubehelm') {
-              step(withKubeConfig(caCertificate: '', clusterName: 'development-cluster', contextName: 'gke_itserious_europe-north1-a_development-cluster', credentialsId: 'jenkins-robot', namespace: '', serverUrl: 'https://35.228.101.27') {
+              step(withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kubeconfigraw', namespace: '', serverUrl: '') {
+    // some block
            sh 'helm version'
            sh 'kubectl version'
            sh 'kubectl config get-contexts'
-})
+          })
             }
           
           }
