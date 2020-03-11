@@ -75,8 +75,6 @@ spec:
      stage('Finalization') {
  
                 sh 'echo "Success"'
-        
-          }
     
       }   
 
