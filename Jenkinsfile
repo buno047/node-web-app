@@ -72,13 +72,12 @@ spec:
     
       }
         
-      stages {
-        stage('Finalization') {
+    
+      stage('Finalization') {
             steps {
                 sh 'echo success'
             }
-        }
-    }
+      }
     
     }
     
