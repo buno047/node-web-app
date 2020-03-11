@@ -71,6 +71,14 @@ spec:
           }
     
       }
+        
+      stages {
+        stage('Finalization') {
+            steps {
+                sh 'echo success'
+            }
+        }
+    }
     
     }
     
