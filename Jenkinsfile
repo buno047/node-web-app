@@ -45,13 +45,6 @@ spec:
       }
     }   
     
-    environment {
-        PROJECT_ID = 'itserious'
-        CLUSTER_NAME = 'development-cluster'
-        LOCATION = 'europe-north1-a'
-        CREDENTIALS_ID = 'itserious'
-        IMAGE_TAG = "eu.gcr.io/itserious/node-web-app:${env.BRANCH_NAME}-${env.BUILD_NUMBER}"
-    }
 
     stages {
        
