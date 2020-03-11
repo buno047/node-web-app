@@ -61,6 +61,7 @@ spec:
            sh 'helm version'
            sh 'kubectl version'
            sh 'kubectl config get-contexts'
+           sh 'kubectl get pods -n itserious-dev'
           })
             }
           
