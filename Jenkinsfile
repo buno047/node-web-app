@@ -28,7 +28,7 @@ spec:
     - cat
     tty: true
   - name: kubehelm
-    image: ibmcom/helm
+    image: devth/helm
     command:
     - cat
     tty: true
