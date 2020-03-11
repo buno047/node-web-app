@@ -76,10 +76,10 @@ spec:
  
           steps{
 
-              step({
+              step(
                 // some block
                 sh 'echo "Success"'
-                   })
+                  )
         
           }
     
