@@ -52,7 +52,7 @@ spec:
           steps{
             container('kubectl') {
               step(withKubeConfig(clusterName: 'development-cluster', contextName: 'gke_itserious_europe-north1-a_development-cluster', credentialsId: 'jenkins-robot', namespace: 'itserious-dev', serverUrl: 'https://35.228.101.27') {
-    sh 'kubectl get pods'
+    sh 'kubectl get pods -n itserious-dev'
 })
             }
           
