@@ -71,13 +71,7 @@ spec:
           }
     
       }
-        
-    
-      stage('Finalization') {
-            steps {
-                sh 'echo success'
-            }
-      }
+       
     
     }
     
