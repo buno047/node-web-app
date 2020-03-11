@@ -75,11 +75,8 @@ spec:
       stage('Finalization') {
  
           steps{
-
-              step(
-                // some block
-                sh 'echo Success'
-                  )
+                
+              sh 'echo Success'
         
           }
     
