@@ -28,7 +28,7 @@ spec:
     - cat
     tty: true
   - name: kubehelm
-    image: dtzar/helm-kubectl
+    image: devth/helm
     command:
     - cat
     tty: true
