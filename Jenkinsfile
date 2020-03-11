@@ -59,7 +59,7 @@ spec:
               step(withKubeConfig(caCertificate: '', clusterName: 'development-cluster', contextName: 'gke_itserious_europe-north1-a_development-cluster', credentialsId: 'jenkins-robot', namespace: '', serverUrl: 'https://35.228.101.27') {
            sh 'helm version'
            sh 'kubectl version'
-           sh 'kubectl get pods'
+           sh 'kubectl config get-contexts'
 })
             }
           
