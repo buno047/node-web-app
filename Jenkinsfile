@@ -72,16 +72,6 @@ spec:
     
       }
     
-      stage('Finalization') {
- 
-          steps{
-                
-              sh 'echo Success'
-        
-          }
-    
-      }   
-
     }
     
 }
