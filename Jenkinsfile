@@ -55,16 +55,16 @@ spec:
       stage('Deploy to GKE') {
  
           steps{
-            container('kubehelm') {
+            container('kubectl') {
               step(withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kubeconfigraw', namespace: '', serverUrl: '') {
     // some block
-           sh 'helm version'
+          // sh 'helm version'
            sh 'kubectl version'
            sh 'kubectl config get-contexts'
            sh 'kubectl get pods -n itserious-test'
-           sh 'helm list -n itserious-test'
-           sh 'helm install music ./ci/mychart -n itserious-test'
-           sh 'helm list -n itserious-test'
+          // sh 'helm list -n itserious-test'
+         //  sh 'helm install music ./ci/mychart -n itserious-test'
+         //  sh 'helm list -n itserious-test'
           })
             }
           
