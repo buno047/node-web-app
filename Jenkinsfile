@@ -55,7 +55,7 @@ spec:
       stage('Deploy to GKE') {
  
           steps{
-            container('kubectl') {
+            container('kubehelm') {
               step(withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kubeconfigraw', namespace: '', serverUrl: '') {
     // some block
           // sh 'helm version'
