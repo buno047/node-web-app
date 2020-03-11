@@ -61,7 +61,10 @@ spec:
            sh 'helm version'
            sh 'kubectl version'
            sh 'kubectl config get-contexts'
-           sh 'kubectl get pods -n itserious-dev'
+           sh 'kubectl get pods -n itserious-test'
+           sh 'helm list -n itserious-test'
+           sh 'helm install ./ci/mychart -n itserious-test'
+           sh 'helm list -n itserious-test'
           })
             }
           
