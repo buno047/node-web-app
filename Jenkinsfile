@@ -47,7 +47,7 @@ spec:
           steps{
             container('kubehelm') {
              
-                step(withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'jenkins-gke-admin', namespace: '', serverUrl: 'https://35.228.101.27') {
+                step(withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'jenkins-one', namespace: '', serverUrl: 'https://35.228.101.27') {
              sh 'helm version'
              sh 'kubectl version'
              sh 'kubectl config get-contexts'
