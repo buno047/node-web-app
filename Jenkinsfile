@@ -28,7 +28,7 @@ spec:
     - cat
     tty: true
   - name: kubehelm
-    image: dtzar/helm-kubectl
+    image: eu.gcr.io/itserious/ubuntu:1
     command:
     - cat
     tty: true
