@@ -1,5 +1,4 @@
-pipeline {
-    agent {
+node {
         kubernetes {
           //cloud 'kubernetes'
           label 'kaniko'
@@ -37,8 +36,7 @@ spec:
       secret:
         secretName: kaniko-secret
 """
-      }
-    }   
+      }  
     
     stages {
 
