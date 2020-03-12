@@ -47,13 +47,13 @@ spec:
           steps{
             container('kubehelm') {
              
-                step(withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'jenkins-two', namespace: '', serverUrl: 'https://35.228.101.27') {
+                step(withKubeConfig(caCertificate: '', clusterName: 'development-cluster', contextName: 'gke_itserious_europe-north1-a_development-cluster', credentialsId: 'jenkins-two', namespace: 'itserious-dev', serverUrl: 'https://35.228.101.27') {
              sh 'helm version'
              sh 'kubectl version'
              sh 'kubectl config get-contexts'
-             sh 'kubectl get pods -n itserious-dev'
-             sh 'kubectl get pods -n itserious-test'
-             sh 'kubectl get pods -n itserious-jenkins'
+             sh 'kubectl get pods'
+             //sh 'kubectl get pods -n itserious-test'
+             //sh 'kubectl get pods -n itserious-jenkins'
               })
             
             
