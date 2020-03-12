@@ -50,14 +50,14 @@ spec:
              script {
                   try {
                
-                    step(withKubeConfig(credentialsId: 'jenkins-two', serverUrl: 'https://35.228.101.27') {
+                    withKubeConfig(credentialsId: 'jenkins-two', serverUrl: 'https://35.228.101.27') {
              //sh 'helm version'
              //sh 'kubectl version'
              //sh 'kubectl config get-contexts'
              //sh 'kubectl get pods'
              //sh 'kubectl get pods -n itserious-test'
              //sh 'kubectl get pods -n itserious-jenkins'
-             })   
+                   }  
                       
                       
                     } catch (Exception e) {
