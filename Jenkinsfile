@@ -38,40 +38,39 @@ spec:
 """
       }  
     
-    stages {
+   // stages {
 
       stage('Deploy to GKE') {
  
-          steps{
+        //  steps{
             container('kubehelm') {
              
-             script {
-                  try {
+            // script {
+                  // try {
                
                     withKubeConfig(credentialsId: 'jenkins-two', serverUrl: 'https://35.228.101.27') {
-             //sh 'helm version'
-             //sh 'kubectl version'
-             //sh 'kubectl config get-contexts'
-             //sh 'kubectl get pods'
+             sh 'helm version'
+             sh 'kubectl version'
+             sh 'kubectl config get-contexts'
+             sh 'kubectl get pods'
              //sh 'kubectl get pods -n itserious-test'
              //sh 'kubectl get pods -n itserious-jenkins'
                    }  
                       
                       
-                    } catch (Exception e) {
-                        sh 'Handle the exception!'
-                       }
-                    }   
+                  //  } catch (Exception e) {
+                   //     sh 'Handle the exception!'
+                   //    }
+                  //  }   
                 
-            
-            }
+       //     }
           
           }
     
-      }
+        }
        
     
-    }
+   // }
     
 }
  // sh 'helm list -n itserious-test'
