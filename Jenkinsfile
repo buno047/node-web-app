@@ -54,7 +54,7 @@ spec:
              //sh 'kubectl get pods'
              //sh 'kubectl get pods -n itserious-test'
              //sh 'kubectl get pods -n itserious-jenkins'
-              })
+              }
             
             
             }
