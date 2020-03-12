@@ -47,7 +47,7 @@ spec:
           steps{
             container('kubehelm') {
              
-             step(withKubeConfig(clusterName: 'development-cluster', contextName: 'gke_itserious_europe-north1-a_development-cluster', credentialsId: 'jenkins-two', namespace: 'itserious-dev', serverUrl: 'https://35.228.101.27') {
+             step(withKubeConfig(credentialsId: 'jenkins-two', serverUrl: 'https://35.228.101.27') {
              //sh 'helm version'
              //sh 'kubectl version'
              //sh 'kubectl config get-contexts'
