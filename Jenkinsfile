@@ -1,4 +1,5 @@
-node {
+pipeline {
+        agent {
         kubernetes {
           //cloud 'kubernetes'
           label 'kaniko'
@@ -37,15 +38,15 @@ spec:
         secretName: kaniko-secret
 """
       }  
-    
-   // stages {
+ }              
+    stages {
 
       stage('Deploy to GKE') {
  
-        //  steps{
+          steps{
             container('kubehelm') {
              
-            // script {
+             script {
                   // try {
                
                     withKubeConfig(credentialsId: 'jenkins-two', serverUrl: 'https://35.228.101.27') {
@@ -56,21 +57,20 @@ spec:
              //sh 'kubectl get pods -n itserious-test'
              //sh 'kubectl get pods -n itserious-jenkins'
                    }  
-                      
-                      
+       
                   //  } catch (Exception e) {
                    //     sh 'Handle the exception!'
                    //    }
                   //  }   
-                
-       //     }
+             } //script  
+                     
+            } //container
           
-          }
+          } //steps
     
-        }
-       
-    
-   // }
+       } //stage
+
+    } //stages
     
 }
  // sh 'helm list -n itserious-test'
