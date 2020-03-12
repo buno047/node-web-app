@@ -28,7 +28,7 @@ spec:
     - cat
     tty: true
   - name: kubehelm
-    image: eu.gcr.io/itserious/ubuntu:1
+    image: dtzar/helm-kubectl
     command:
     - cat
     tty: true
@@ -46,7 +46,7 @@ spec:
  
           steps{
             container('kubehelm') {
-              step(withKubeConfig(caCertificate: '', clusterName: 'development-cluster', contextName: 'gke_itserious_europe-north1-a_development-cluster', credentialsId: 'kubeconfig', namespace: 'itserious-test', serverUrl: 'https://35.228.101.27') {
+              step(withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kubeconfig', namespace: '', serverUrl: '') {
     // some block
            sh 'helm version'
            sh 'kubectl version'
