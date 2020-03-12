@@ -46,7 +46,7 @@ spec:
  
           steps{
             container('kubehelm') {
-              step(withKubeConfig(caCertificate: '', clusterName: 'development-cluster', contextName: 'gke_itserious_europe-north1-a_development-cluster', credentialsId: 'kubeconfigraw', namespace: 'itserious-test', serverUrl: 'https://35.228.101.27') {
+              step(withKubeConfig(caCertificate: '', clusterName: 'development-cluster', contextName: 'gke_itserious_europe-north1-a_development-cluster', credentialsId: 'kubeconfig', namespace: 'itserious-test', serverUrl: 'https://35.228.101.27') {
     // some block
            sh 'helm version'
            sh 'kubectl version'
