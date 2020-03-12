@@ -38,7 +38,17 @@ spec:
         secretName: kaniko-secret
 """
       }  
- }              
+ }        
+        
+   environment {
+        PROJECT_ID = 'itserious'
+        CLUSTER_NAME = 'development-cluster'
+        LOCATION = 'europe-north1-a'
+        CREDENTIALS_ID = 'itserious'
+        IMAGE_TAG = "eu.gcr.io/itserious/node-web-app:${env.BRANCH_NAME}-${env.BUILD_NUMBER}"
+    }     
+        
+      
     stages {
 
       stage('Deploy to GKE') {
@@ -47,21 +57,18 @@ spec:
             container('kubehelm') {
              
              script {
-                  // try {
+                  
                
                     withKubeConfig(credentialsId: 'jenkins-two', serverUrl: 'https://35.228.101.27') {
-             sh 'helm version'
-             sh 'kubectl version'
-             sh 'kubectl config get-contexts'
-             sh 'kubectl get pods'
-             //sh 'kubectl get pods -n itserious-test'
-             //sh 'kubectl get pods -n itserious-jenkins'
+                          sh '''
+                              helm list -n itserious-test
+                              helm install music ./ci/mychart -n itserious-test
+                              helm list -n itserious-test
+                             '''
+            
                    }  
        
-                  //  } catch (Exception e) {
-                   //     sh 'Handle the exception!'
-                   //    }
-                  //  }   
+                  
              } //script  
                      
             } //container
@@ -73,6 +80,4 @@ spec:
     } //stages
     
 }
- // sh 'helm list -n itserious-test'
-         //  sh 'helm install music ./ci/mychart -n itserious-test'
-         //  sh 'helm list -n itserious-test'
+
