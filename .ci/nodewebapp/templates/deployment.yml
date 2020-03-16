@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "nodewebapp.fullname" . }}
+  labels:
+{{ include "nodewebapp.labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "nodewebapp.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "nodewebapp.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: {{ .Values.deployment.image }}:{{ .Values.deployment.tag }}
+        ports:
+        - name: {{ .Values.deployment.ports.name }}
+          containerPort: {{ .Values.deployment.ports.containerPort }}
+          protocol: TCP
+        imagePullPolicy: {{ .Values.deployment.imagePullPolicy }}

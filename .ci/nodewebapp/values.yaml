@@ -1,0 +1,23 @@
+deployment:
+  replicas: 1
+  image: eu.gcr.io/itserious/node-web-app
+  tag: master-44
+  ports:
+    name: nodewebapp-port
+    containerPort: 8080
+  imagePullPolicy: Always
+
+
+service:
+  port: 80 
+  targetPort: nodewebapp-port
+  type: ClusterIP
+
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/issuer: itserious-server-letsencrypt-prod-test
+  host: node
+  domain: itserious.com

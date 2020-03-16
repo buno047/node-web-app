@@ -1,0 +1,33 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+build:
+  tagPolicy:
+    gitCommit: {}
+  artifacts:
+  - image: nodewebapp-skf
+
+deploy:
+  helm:
+    releases:
+    - name: nodewebapp-skf-rel
+      namespace: itserious-test
+      chartPath: .ci/nodewebapp
+      wait: true
+      valuesFiles:
+      - .ci/nodewebapp/values.yaml
+      values:
+        image: nodewebapp-skf
+      imageStrategy:
+        helm: {}
+      #recreatePods will pass --recreate-pods to helm upgrade
+      recreatePods: true
+      #overrides builds an override values.yaml file to run with the helm deploy
+      #overrides:
+      # some:
+      #   key: someValue
+      #setValues get appended to the helm deploy with --set.
+      #setValues:
+        #mongodburi: mongodb://
+     #flags:
+     #   upgrade:
+     #     - --install

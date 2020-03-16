@@ -1,0 +1,25 @@
+{{- if .Values.ingress.enabled -}}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ include "nodewebapp.fullname" . }}
+  labels:
+    {{- include "nodewebapp.labels" . | nindent 4 }}
+  {{- with .Values.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  tls:
+    - hosts:
+      - "{{ .Values.ingress.host }}-{{ .Release.Name }}-{{ .Release.Namespace }}.dev.{{ .Values.ingress.domain }}" 
+      secretName: {{ include "nodewebapp.fullname" . }}-tls
+  rules:
+    - host: "{{ .Values.ingress.host }}-{{ .Release.Name }}-{{ .Release.Namespace }}.dev.{{ .Values.ingress.domain }}"
+      http:
+        paths:
+          - backend:
+              serviceName: {{ include "nodewebapp.fullname" . }}
+              servicePort: {{ .Values.service.port }}
+            path: /
+{{- end }}
