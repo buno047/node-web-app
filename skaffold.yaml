@@ -6,9 +6,9 @@ build:
     sha256: {} 
   artifacts:
   - image: nodewebapp-skf
-    sync:
-      infer:
-      - 'app/**'
+#    sync:
+#      infer:
+#      - 'app/**'
 
 deploy:
   helm:
