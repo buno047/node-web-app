@@ -5,7 +5,7 @@ metadata:
   labels:
 {{ include "nodewebapp.labels" . | indent 4 }}
 spec:
-  replicas: {{ .Values.deployment.replicas }}
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app.kubernetes.io/name: {{ include "nodewebapp.name" . }}
@@ -16,11 +16,16 @@ spec:
         app.kubernetes.io/name: {{ include "nodewebapp.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}  
       containers:
-      - name: {{ .Chart.Name }}
-        image: {{ .Values.deployment.image }}:{{ .Values.deployment.tag }}
-        ports:
-        - name: {{ .Values.deployment.ports.name }}
-          containerPort: {{ .Values.deployment.ports.containerPort }}
-          protocol: TCP
-        imagePullPolicy: {{ .Values.deployment.imagePullPolicy }}
+       - name: {{ .Chart.Name }}
+         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+         imagePullPolicy: {{ .Values.image.pullPolicy }}
+         ports:
+         - name: nodewebapp-port
+           containerPort: 8080
+           protocol: TCP
+         

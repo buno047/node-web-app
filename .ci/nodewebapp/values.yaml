@@ -1,17 +1,19 @@
-deployment:
-  replicas: 1
-  image: eu.gcr.io/itserious/node-web-app
+replicaCount: 1
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+
+image:
+  repository: eu.gcr.io/itserious/node-web-app
   tag: master-44
-  ports:
-    name: nodewebapp-port
-    containerPort: 8080
-  imagePullPolicy: Always
+  pullPolicy: Always
 
 
 service:
-  port: 80 
-  targetPort: nodewebapp-port
   type: ClusterIP
+  port: 80
 
 
 ingress:
@@ -21,3 +23,19 @@ ingress:
     cert-manager.io/issuer: itserious-server-letsencrypt-prod-test
   host: node
   domain: itserious.com
+
+
+#deployment:
+#  replicas: 1
+#  image: eu.gcr.io/itserious/node-web-app
+#  tag: master-44
+#  ports:
+#    name: nodewebapp-port
+#    containerPort: 8080
+#  imagePullPolicy: Always
+
+
+#service:
+#  port: 80 
+#  targetPort: nodewebapp-port
+#  type: ClusterIP

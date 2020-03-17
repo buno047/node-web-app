@@ -1,4 +1,4 @@
-apiVersion: skaffold/v2alpha4
+apiVersion: skaffold/v2alpha3
 kind: Config
 build:
   tagPolicy:
@@ -17,12 +17,12 @@ deploy:
       namespace: itserious-test
       chartPath: .ci/nodewebapp
       wait: true
-      valuesFiles:
-      - .ci/nodewebapp/values.yaml
+ #     valuesFiles:
+ #     - .ci/nodewebapp/values.yaml
       values:
         image: nodewebapp-skf
-      imageStrategy:
-        helm: {}
+ #     imageStrategy:
+ #       helm: {}
       #recreatePods will pass --recreate-pods to helm upgrade
       recreatePods: true
       #overrides builds an override values.yaml file to run with the helm deploy
